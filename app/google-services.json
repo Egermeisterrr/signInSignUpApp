@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "594911731500",
+    "firebase_url": "https://signinsignupapp-272c5-default-rtdb.firebaseio.com",
+    "project_id": "signinsignupapp-272c5",
+    "storage_bucket": "signinsignupapp-272c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594911731500:android:e7432aad8f46893059d689",
+        "android_client_info": {
+          "package_name": "com.example.signinsignup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594911731500-9ml4e1lchakiqpdnp0hfitrabpdnqnua.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.signinsignup",
+            "certificate_hash": "1fb17dc9a5c941bac6ce767d39208ab197fcd657"
+          }
+        },
+        {
+          "client_id": "594911731500-grf586mlmv8tr6spi81goh01445k1s66.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5ji9_k3KG7_3SmdTEL_iIih6FCbgQhSQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "594911731500-grf586mlmv8tr6spi81goh01445k1s66.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
