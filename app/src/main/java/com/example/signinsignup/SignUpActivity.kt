@@ -10,6 +10,8 @@ import android.widget.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import android.widget.RadioButton
+import com.example.signinsignup.adapters.DataTextWatcher
+import com.example.signinsignup.adapters.PhoneTextWatcher
 import com.example.signinsignup.modul.User
 import com.google.firebase.database.FirebaseDatabase
 
@@ -43,6 +45,7 @@ class SignUpActivity : AppCompatActivity() {
         var gender = ""
         val gen1: RadioButton = findViewById(R.id.radioButton)
         val gen2: RadioButton = findViewById(R.id.radioButton2)
+
         if (gen1.isChecked) {
             gender = "Мужской"
         }
@@ -57,7 +60,6 @@ class SignUpActivity : AppCompatActivity() {
         val number: EditText = findViewById(R.id.num)
         val login: EditText = findViewById(R.id.login)
         val password: EditText = findViewById(R.id.password)
-        val confirmPassword: EditText = findViewById(R.id.confirmPassword)
 
         return User(
             fio.text.toString(),
@@ -111,7 +113,8 @@ class SignUpActivity : AppCompatActivity() {
         val id = item.itemId
         if (id == R.id.action_mode_close_button) {
             return true
-        } else {
+        }
+        else {
             finish()
         }
         return super.onOptionsItemSelected(item)
@@ -126,12 +129,11 @@ class SignUpActivity : AppCompatActivity() {
         var gender = ""
         val gen1: RadioButton = findViewById(R.id.radioButton)
         val gen2: RadioButton = findViewById(R.id.radioButton2)
-        if (gen1.isChecked)
-        {
+
+        if (gen1.isChecked) {
             gender = "Мужской"
         }
-        else if (gen2.isChecked)
-        {
+        else if (gen2.isChecked) {
             gender = "Женский"
         }
 
@@ -153,7 +155,6 @@ class SignUpActivity : AppCompatActivity() {
             company.text.toString() == "" || number.text.toString() == "" ||
             login.text.toString() == "" || password.text.toString() == ""
         ) {
-
             builder.setMessage("Не все поля заполнены")
             builder.setPositiveButton(android.R.string.ok) { dialog, which ->
                 dialog.dismiss()

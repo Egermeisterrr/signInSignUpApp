@@ -1,4 +1,4 @@
-package com.example.signinsignup
+package com.example.signinsignup.adapters
 
 import android.text.Editable
 import android.text.TextWatcher

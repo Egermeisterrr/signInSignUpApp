@@ -27,17 +27,20 @@ class SignInActivity : AppCompatActivity() {
 
     private fun auth() {
         val auth = FirebaseAuth.getInstance()
+
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("")
         builder.setCancelable(false)
+
         val login: EditText = findViewById(R.id.log)
         val password: EditText = findViewById(R.id.pas)
 
-        if(login.text.toString() != "" && password.text.toString() != "") {
+        if (login.text.toString() != "" && password.text.toString() != "") {
             val u = Firebase.database.reference.child("Users").child(login.text.toString()).get()
                 .addOnSuccessListener {
                     val user: String = it.value.toString()
                     val mail = user.substringAfterLast('=').substringBefore('}')
+
                     auth.signInWithEmailAndPassword(mail, password.text.toString())
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
@@ -49,7 +52,8 @@ class SignInActivity : AppCompatActivity() {
                                 }
                                 val dialog: AlertDialog = builder.create()
                                 dialog.show()
-                            } else {
+                            }
+                            else {
                                 builder.setMessage("Авторизация не выполнена, проверьте введённые данные")
                                 builder.setPositiveButton(android.R.string.ok) { dialog, which ->
                                     dialog.dismiss()
@@ -60,7 +64,7 @@ class SignInActivity : AppCompatActivity() {
                         }
                 }
         }
-        else if(login.text.toString() == "" && password.text.toString() == ""){
+        else if (login.text.toString() == "" && password.text.toString() == "") {
             builder.setMessage("Введите логин и пароль")
             builder.setPositiveButton(android.R.string.ok) { dialog, which ->
                 dialog.dismiss()
@@ -68,7 +72,7 @@ class SignInActivity : AppCompatActivity() {
             val dialog: AlertDialog = builder.create()
             dialog.show()
         }
-        else if(login.text.toString() == ""){
+        else if (login.text.toString() == "") {
             builder.setMessage("Введите логин")
             builder.setPositiveButton(android.R.string.ok) { dialog, which ->
                 dialog.dismiss()
@@ -76,7 +80,7 @@ class SignInActivity : AppCompatActivity() {
             val dialog: AlertDialog = builder.create()
             dialog.show()
         }
-        else if(password.text.toString() == ""){
+        else if (password.text.toString() == "") {
             builder.setMessage("Введите пароль")
             builder.setPositiveButton(android.R.string.ok) { dialog, which ->
                 dialog.dismiss()
@@ -91,12 +95,12 @@ class SignInActivity : AppCompatActivity() {
         builder.setTitle("")
         builder.setCancelable(false)
         val login: EditText = findViewById(R.id.log)
-        if(login.text.toString() != "") {
+        if (login.text.toString() != "") {
             val u = Firebase.database.reference.child("Users").child(login.text.toString()).get()
                 .addOnSuccessListener {
                     val user: String = it.value.toString()
                     val pas = user.substringAfter('=').substringAfter('=').substringBefore(',')
-                    if(pas != "null"){
+                    if (pas != "null") {
                         builder.setMessage("Ваш пароль $pas")
                     }
                     else {
@@ -123,7 +127,8 @@ class SignInActivity : AppCompatActivity() {
         val id = item.itemId
         if (id == R.id.action_mode_close_button) {
             return true
-        } else {
+        }
+        else {
             finish()
         }
         return super.onOptionsItemSelected(item)
