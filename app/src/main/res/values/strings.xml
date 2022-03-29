@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">signInSignUp</string>
     <string name="homagRussland">HOMAG RUSSLAND</string>
-    <string name="order">Заказывайте запасые части не отходя от станка</string>
-    <string name="ifRegister">Если вы зарегистрированы в HOMAG RUSSLAND, используйте ваши логин и пароль для выхода</string>
+    <string name="order">Заказывайте запасные части не отходя от станка</string>
+    <string name="ifRegister">Если вы зарегистрированы в HOMAG RUSSLAND, используйте ваши логин и пароль для входа</string>
     <string name="signIn">Вход</string>
     <string name="signUp">Регистрация</string>
     <string name="or">или</string>
