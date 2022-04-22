@@ -59,7 +59,7 @@ class DataTextWatcher(private val input: EditText) : TextWatcher {
         }
 
         clean = String.format(
-            "%s/%s/%s", clean.substring(0, 2),
+            "%s.%s.%s", clean.substring(0, 2),
             clean.substring(2, 4),
             clean.substring(4, 8)
         )

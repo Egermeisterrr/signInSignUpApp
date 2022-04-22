@@ -56,12 +56,12 @@ class PhoneTextWatcher : TextWatcher {
 
         return when {
             text.startsWith("7") -> {
-                "+X (XXX) XXX-XX-XX"
+                "+X XXX XXX XX XX"
             }
             text.startsWith("375") -> {
-                "+XXX (XX) XXX-XX-XX"
+                "+XXX XX XXX XX XX"
             }
-            else -> "+XXX (XXX) XX-XX-XX"
+            else -> "+XXX XXX XX XX XX"
         }
     }
 }
