@@ -48,8 +48,7 @@ class SignUpActivity : AppCompatActivity() {
 
         if (gen1.isChecked) {
             gender = "Мужской"
-        }
-        else if (gen2.isChecked) {
+        } else if (gen2.isChecked) {
             gender = "Женский"
         }
 
@@ -81,30 +80,14 @@ class SignUpActivity : AppCompatActivity() {
                     val us = auth.currentUser
                     users.child(user.login).setValue(user)
                         .addOnSuccessListener {
-                            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-                            builder.setTitle("")
-                            builder.setCancelable(false)
-                            builder.setMessage("Регистрация успешна. ID - " + us?.uid.toString())
-                            builder.setPositiveButton(android.R.string.ok) { dialog, which ->
-                                dialog.dismiss()
-                                startActivity(Intent(this, MainActivity::class.java))
-                            }
-                            val dialog: AlertDialog = builder.create()
-                            dialog.show()
+                            val text = "Регистрация успешна. ID - " + us?.uid.toString()
+                            dialog(text)
+                            startActivity(Intent(this, MainActivity::class.java))
                         }
-                }
+                } 
                 else {
-                    val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-                    builder.setTitle("")
-                    builder.setCancelable(false)
-                    builder.setMessage("Регистрация не выполнена, проверьте корректность данных")
-                    builder.setPositiveButton(android.R.string.ok) { dialog, which ->
-                        dialog.dismiss()
-                        val rb: RadioButton = findViewById(R.id.r3)
-                        rb.isChecked = false
-                    }
-                    val dialog: AlertDialog = builder.create()
-                    dialog.show()
+                    val text = "Регистрация не выполнена, проверьте корректность данных"
+                    dialog(text)
                 }
             }
     }
@@ -113,7 +96,7 @@ class SignUpActivity : AppCompatActivity() {
         val id = item.itemId
         if (id == R.id.action_mode_close_button) {
             return true
-        }
+        } 
         else {
             finish()
         }
@@ -132,7 +115,7 @@ class SignUpActivity : AppCompatActivity() {
 
         if (gen1.isChecked) {
             gender = "Мужской"
-        }
+        } 
         else if (gen2.isChecked) {
             gender = "Женский"
         }
@@ -150,33 +133,79 @@ class SignUpActivity : AppCompatActivity() {
         builder.setTitle("")
         builder.setCancelable(false)
 
-        if (fio.text.toString() == "" || gender == "" || data.text.toString() == "" ||
-            phone.text.toString() == "" || mail.text.toString() == "" ||
-            company.text.toString() == "" || number.text.toString() == "" ||
-            login.text.toString() == "" || password.text.toString() == ""
-        ) {
-            builder.setMessage("Не все поля заполнены")
-            builder.setPositiveButton(android.R.string.ok) { dialog, which ->
-                dialog.dismiss()
-                val rb: RadioButton = findViewById(R.id.r3)
-                rb.isChecked = false
-            }
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
+        if(fio.text.toString() == "") {
+            badResult("ФИО")
         }
 
-        if (password.text.toString() != confirmPassword.text.toString()) {
-            builder.setMessage("Пароли должны совпадать")
-            builder.setPositiveButton(android.R.string.ok) { dialog, which ->
-                dialog.dismiss()
-                val rb: RadioButton = findViewById(R.id.r3)
-                rb.isChecked = false
-            }
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
+        else if(gender == "") {
+            badResult("Пол")
+        }
+
+        else if(data.text.toString() == "") {
+            badResult("Дата рождения")
+        }
+
+        else if(phone.text.toString() == "") {
+            badResult("Телефон")
+        }
+
+        else if(mail.text.toString() == "") {
+            badResult("Электонная почта")
+        }
+
+        else if(company.text.toString() == "") {
+            badResult("Название компании")
+        }
+
+        else if(number.text.toString() == "") {
+            badResult("Номер")
+        }
+
+        else if(login.text.toString() == "") {
+            badResult("Логин")
+        }
+
+        else if(password.text.toString() == "") {
+            badResult("Пароль")
+        }
+
+        else if (password.text.toString().length < 6) {
+            val text = "Пароль должкен включать не менее 6 символов"
+            dialog(text)
+        }
+
+        else if(!mail.text.toString().contains("@")) {
+            val text = "Проверьте корректность введённой электронной почты"
+            dialog(text)
+        }
+
+        else if (password.text.toString() != confirmPassword.text.toString()) {
+            val text = "Пароли должны совпадать"
+            dialog(text)
         }
 
         b.isClickable = true
         b.alpha = 1.0f
+    }
+
+    private fun badResult(fieldName : String) {
+        val text = "Поле $fieldName должно быть заполнено"
+        dialog(text)
+    }
+
+    private fun dialog(text: String) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("")
+        builder.setCancelable(false)
+
+        builder.setMessage(text)
+        builder.setPositiveButton(android.R.string.ok) { dialog, which ->
+            dialog.dismiss()
+            val rb: RadioButton = findViewById(R.id.r3)
+            rb.isChecked = false
+        }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 }

@@ -58,8 +58,14 @@ class PhoneTextWatcher : TextWatcher {
             text.startsWith("7") -> {
                 "+X XXX XXX XX XX"
             }
+            text.startsWith("+7") -> {
+                "+X XXX XXX XX XX"
+            }
             text.startsWith("375") -> {
                 "+XXX XX XXX XX XX"
+            }
+            text.startsWith("+375") -> {
+                "+X XXX XXX XX XX"
             }
             else -> "+XXX XXX XX XX XX"
         }

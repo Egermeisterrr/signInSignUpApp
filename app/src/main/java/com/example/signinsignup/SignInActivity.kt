@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
@@ -11,6 +12,7 @@ import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import org.json.JSONObject
 
 class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +41,15 @@ class SignInActivity : AppCompatActivity() {
             val u = Firebase.database.reference.child("Users").child(login.text.toString()).get()
                 .addOnSuccessListener {
                     val user: String = it.value.toString()
+
+                    /////////////////////////////////////////////
+                    //Log.d("MyLog", "Response: ${it.value}")
+                    //val obj = it.value.toString()
+                    //Log.d("MyLog", "obj: $obj")
+                    //val email = obj("email")
+                    //Log.d("MyLog", "obj: $email")
+                    ////////////////////////////////////////////
+
                     val mail = user.substringAfterLast('=').substringBefore('}')
 
                     auth.signInWithEmailAndPassword(mail, password.text.toString())

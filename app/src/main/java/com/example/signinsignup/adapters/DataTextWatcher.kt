@@ -64,12 +64,20 @@ class DataTextWatcher(private val input: EditText) : TextWatcher {
             clean.substring(4, 8)
         )
 
-        sel = if (sel < 0) 0 else sel
+        sel =
+            if (sel < 0)
+                0
+            else
+                sel
+
         current = clean
         input.setText(current)
         input.setSelection(
-            if (sel < current.length) sel
-            else current.length
+
+            if (sel < current.length)
+                sel
+            else
+                current.length
         )
     }
 }
